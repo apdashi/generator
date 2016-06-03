@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>574</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="config_project">
+        <attribute name="title">
+         <string>Значения</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="3" column="1">
+            <widget class="QTimeEdit" name="timeIn"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>Время публикации</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Название проекта</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Номер заявки</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" colspan="4">
+            <widget class="QLineEdit" name="specBid"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Описание заявки</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QTimeEdit" name="timeOut"/>
+           </item>
+           <item row="0" column="1" colspan="4">
+            <widget class="QLineEdit" name="nameProject"/>
+           </item>
+           <item row="3" column="3" colspan="2">
+            <widget class="QDateEdit" name="dateIn"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Экземляры</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="app1"/>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="app2"/>
+           </item>
+           <item row="4" column="3">
+            <widget class="QLineEdit" name="app3"/>
+           </item>
+           <item row="4" column="4">
+            <widget class="QLineEdit" name="app4"/>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>IP адрес</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="ipAddress1"/>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="ipAddress2"/>
+           </item>
+           <item row="5" column="3">
+            <widget class="QLineEdit" name="ipAddress3"/>
+           </item>
+           <item row="5" column="4">
+            <widget class="QLineEdit" name="ipAddress4"/>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="numBid"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Номер ревизии</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="numberRev"/>
+           </item>
+           <item row="1" column="4">
+            <widget class="QCheckBox" name="cache">
+             <property name="text">
+              <string>Сброс кеша</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="people">
+        <attribute name="title">
+         <string>Команда публикации</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_15">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_14"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="stage_4">
+        <attribute name="title">
+         <string>Цель</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="1" column="0">
+            <widget class="QTextEdit" name="title"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Колонтитул</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QTextEdit" name="target"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Цель</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="stage_1">
+        <attribute name="title">
+         <string>Этап 1</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="stage_1_text"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="stage_2">
+        <attribute name="title">
+         <string>Этап 2</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_10">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="stage_2_text"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="stage_3">
+        <attribute name="title">
+         <string>Этап 3</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="stage_3_text"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="configure">
+        <attribute name="title">
+         <string>Настройки</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_13">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_16"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
