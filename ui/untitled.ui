@@ -118,6 +118,13 @@
           <item row="1" column="3">
            <widget class="QLineEdit" name="numberRev"/>
           </item>
+          <item row="7" column="0" colspan="5">
+           <widget class="QDialogButtonBox" name="buttonBox">
+            <property name="standardButtons">
+             <set>QDialogButtonBox::Close|QDialogButtonBox::Ok|QDialogButtonBox::Open|QDialogButtonBox::Save</set>
+            </property>
+           </widget>
+          </item>
           <item row="1" column="4">
            <widget class="QCheckBox" name="cache">
             <property name="text">
@@ -129,23 +136,9 @@
            <widget class="QLineEdit" name="ipAddress3"/>
           </item>
           <item row="6" column="0" colspan="5">
-           <widget class="QDialogButtonBox" name="buttonBox">
-            <property name="standardButtons">
-             <set>QDialogButtonBox::Close|QDialogButtonBox::Ok|QDialogButtonBox::Open|QDialogButtonBox::Save</set>
-            </property>
-           </widget>
+           <widget class="QTableView" name="tableView"/>
           </item>
          </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="people">
-       <attribute name="title">
-        <string>Команда публикации</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_15">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_14"/>
         </item>
        </layout>
       </widget>
