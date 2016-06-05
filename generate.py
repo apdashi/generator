@@ -1,3 +1,6 @@
+from docx import Document
+
+
 def generate(self, py):
     bashIPPost = "iptables -t nat -A POSTROUTING -d %s -p tcp -m tcp --dport %s -j SNAT --to-source %s; \n"
     bashIPPre = "iptables -t nat -A PREROUTING -d %s -p tcp -m tcp --dport %s -j DNAT --to-destination %s; \n"
@@ -39,7 +42,7 @@ def generate(self, py):
         formText += "%s. Системный администратор производит обновление кода приложения на сервере %s путем переключения" \
                     " локальной версии на ветку релиза, выполнив команду Subversion. Номер ревизии: %s \n" % \
                     (iter, listApp[i], self.py.numberRev.text())
-        formText += "svn switch %s \n svn update" % (self.py.svn.text())
+        formText += "svn switch %s \n svn update\n" % (self.py.svn.text())
         iter += 1
         formText += "%s. Системный администратор перезапускает приложение на сервере %s и отключает " \
                     "перенаправление трафика \n" % (iter, listApp[i])
@@ -60,10 +63,25 @@ def generate(self, py):
         iter += 1
         formText += "%s. Тестер у себя прописывает в файл hosts (%%windir%%\\System32\\drivers\\etc\\hosts) IP-адрес " \
                     "площадки сайта \n 185.69.80.8        www.aeroflot.ru \n и осуществляет тестирование по " \
-                    "списку тест-кейсов из файла, выложенного в релизную заявку." % (iter)
+                    "списку тест-кейсов из файла, выложенного в релизную заявку. \n" % (iter)
         iter += 1
         formText += "%s. В случае обнаружения ошибок на этапе тестирования принимается решение об откате" \
-                    " изменений на сервере %s." % (iter, ", ".join(c for c in listApp[0:i]))
+                    " изменений на сервере %s. \n" % (iter, ", ".join(c for c in listApp[0:i]))
     formText += "%s. Производится оповещение ответственных сотрудников (список сформирован на этапе 1) о " \
-                "произведенной публикации." % (iter+1)
+                "произведенной публикации.\n" % (iter+1)
     self.py.stage_2_text.setText(formText)
+
+def saveDoc(self, py):
+    self.py = py
+    document = Document()
+    a = document.se
+    a.text = self.py.target.toPlainText()
+    document.add_heading("Цель")
+    document.add_paragraph(self.py.target.toPlainText())
+    document.add_heading("Этап 1. Подготовка к публикации")
+    document.add_paragraph(self.py.stage_1_text.toPlainText())
+    document.add_heading("Этап 2. Публикация изменений")
+    document.add_paragraph(self.py.stage_2_text.toPlainText())
+    document.add_heading("Этап 3. Мониторинг работы")
+    document.add_paragraph(self.py.stage_3_text.toPlainText())
+    document.save("save/123.docx")
