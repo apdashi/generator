@@ -35,57 +35,6 @@ text19 = "Производится рассылка плана публикац�
          "Команда публикации:"
 text20 = "Производится уведомление команды публикации о дате и времени проведения публикации."
 
-def generate(self, py):
-    pass
-#     self.py = py
-#     self.py.title.setText(text1 % (self.py.nameProject.text(), self.py.numBid.text()))
-#     self.py.target.setText(text2 % (self.py.nameProject.text(), self.py.specBid.text()))
-#     self.py.stage_1_text.setText(text3 % (self.py.timeIn.text(), self.py.timeOut.text(), self.py.dateIn.text()))
-#     self.py.stage_3_text.setText(text4)
-#     formText = ""
-#     listSer = {self.py.app1.text():self.py.ipAddress1.text()}
-#     listApp = [self.py.app1.text()]
-#     if self.py.app2.text() != "":
-#         listSer[self.py.app2.text()] = self.py.ipAddress2.text()
-#         listApp.append(self.py.app2.text())
-#     if self.py.app3.text() != "":
-#         listSer[self.py.app3.text()] = self.py.ipAddress3.text()
-#         listApp.append(self.py.app3.text())
-#     if self.py.app4.text() != "":
-#         listSer[self.py.app4.text()] = self.py.ipAddress4.text()
-#         listApp.append(self.py.app4.text())
-#     formText = text5 % ", ".join(i for i in listSer)
-#     iter = 1
-#     for i in range(0,len(listApp)):
-#         if (len(listApp) - 1) == i:
-#             serverPer = 0
-#         else:
-#             serverPer = i + 1
-#         iter += 1
-#         formText += text6 % (iter, self.py.nameProject.text(), listApp[i], listApp[serverPer])
-#         formText += bashIPPost % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
-#         formText += bashIPPre % (listSer.get(listApp[serverPer]), self.py.portApp.text(), listSer.get(listApp[i]))
-#         iter += 1
-#         formText +=text7 % (iter, listApp[i], self.py.numberRev.text())
-#         formText += text0 % (self.py.svn.text())
-#         iter += 1
-#         formText += text8 % (iter, listApp[i])
-#         formText += text9
-#         formText += bashIPPre % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
-#         formText += bashIPPost % (listSer.get(listApp[serverPer]), self.py.portApp.text(), listSer.get(listApp[i]))
-#         iter += 1
-#         if self.py.cache.isChecked() == True:
-#             formText += text10 % (iter)
-#             formText += text11
-#             iter += 1
-#         formText += text12 % (iter)
-#         formText += text13
-#         iter += 1
-#         formText += text14 % (iter)
-#         iter += 1
-#         formText += text15 % (iter, ", ".join(c for c in listApp[0:i]))
-#     formText += text16 % (iter+1)
-#     self.py.stage_2_text.setText(formText)
 
 def saveDoc(self, py):
     self.py = py

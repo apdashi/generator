@@ -5,7 +5,7 @@ import tabModel
 import configparser
 from job_db import connDB, createDB, tableDB
 from ui.form import Ui_MainWindow
-from generate import generate, saveDoc
+from generate import saveDoc
 from PyQt5.QtCore import Qt
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialogButtonBox, QMessageBox
@@ -16,7 +16,7 @@ class startGen(QMainWindow):
         self.py = Ui_MainWindow()
         self.py.setupUi(self)
         self.py.buttonBox.button(QDialogButtonBox.Open).clicked.connect(self.opened)
-        self.py.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(lambda: generate(self, self.py))
+        # self.py.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(lambda: generate(self, self.py))
         self.py.buttonBox.button(QDialogButtonBox.Close).clicked.connect(self.closeApp)
         self.py.buttonBox.button(QDialogButtonBox.Save).clicked.connect(lambda: saveDoc(self, self.py))
 
@@ -68,7 +68,6 @@ class startGen(QMainWindow):
         shapka = ['Ответственные', 'Публикация', 'Отчет', 'Код', 'Сотрудник', 'Компания', 'email']
         table =[]
         for i in tableDB():
-            print(i)
             table.append([False, False, False, i[0], i[1], i[2], i[3]])
         self.model_tab = tabModel.MyTableModel( table, shapka, self.py.tableView)
         self.py.tableView.setModel(self.model_tab)

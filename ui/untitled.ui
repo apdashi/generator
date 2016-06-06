@@ -17,8 +17,14 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
+      </property>
+      <property name="usesScrollButtons">
+       <bool>false</bool>
       </property>
       <widget class="QWidget" name="config_project">
        <attribute name="title">
@@ -165,6 +171,12 @@
        </layout>
       </widget>
       <widget class="QWidget" name="stage_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
        <attribute name="title">
         <string>Цель</string>
        </attribute>
@@ -196,6 +208,9 @@
        </layout>
       </widget>
       <widget class="QWidget" name="stage_1">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <attribute name="title">
         <string>Этап 1</string>
        </attribute>
@@ -210,6 +225,9 @@
        </layout>
       </widget>
       <widget class="QWidget" name="stage_2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <attribute name="title">
         <string>Этап 2</string>
        </attribute>
@@ -224,6 +242,9 @@
        </layout>
       </widget>
       <widget class="QWidget" name="stage_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <attribute name="title">
         <string>Этап 3</string>
        </attribute>
@@ -314,7 +335,7 @@
     <item row="1" column="0">
      <widget class="QDialogButtonBox" name="buttonBox">
       <property name="standardButtons">
-       <set>QDialogButtonBox::Close|QDialogButtonBox::Ok|QDialogButtonBox::Open|QDialogButtonBox::Save</set>
+       <set>QDialogButtonBox::Close|QDialogButtonBox::Open|QDialogButtonBox::Save</set>
       </property>
      </widget>
     </item>
