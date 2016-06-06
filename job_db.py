@@ -62,7 +62,7 @@ def tableDB():
     try:
         conn = psycopg2.connect(dsn)
         cur = conn.cursor()
-        cur.execute("select * from people;")
+        cur.execute("select * from people ORDER BY people.company, people.fio;")
         table = cur.fetchall()
         cur.close()
         conn.close()

@@ -24,6 +24,8 @@ class startGen(QMainWindow):
         self.py.createDB.clicked.connect(lambda: self.create())
         self.py.checkDB.clicked.connect(lambda: self.check())
 
+        self.py.tableView.doubleClicked.connect(self.twoClick)
+
         self.conf = configparser.RawConfigParser()
         self.conf.read("config.conf")
         self.dsn = 'dbname=%s user=%s password=%s host=%s' % (self.conf.get("postgres", "dbname"),
@@ -39,6 +41,10 @@ class startGen(QMainWindow):
             QMessageBox.question(self, 'Cообщение', otvet, QMessageBox.Yes)
         else:
             self.tableFill()
+
+    def twoClick(self, index):
+        model = index.model()
+        model.setData(index, not(model.cached[index.row()][index.column()]))
 
 
     def check(self):
