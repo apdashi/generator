@@ -2,18 +2,15 @@
 import sqlite3
 
 def sqlDB(sqlText, par=None):
-    try:
-        conn = sqlite3.connect('example.db')
-        cur = conn.cursor()
-        if par is None:
-            cur.execute(sqlText)
-        else:
-            cur.execute(sqlText, par)
-        conn.commit()
-        conn.close()
-        return True
-    except:
-        return False
+    conn = sqlite3.connect('example.db')
+    cur = conn.cursor()
+    if par is None:
+        cur.execute(sqlText)
+    else:
+        cur.execute(sqlText, par)
+    conn.commit()
+    conn.close()
+    return True
 
 def selectDB(sqlText):
     try:
@@ -56,7 +53,7 @@ def tableDB():
 
 """ удаление сотрудников"""
 def delDB(id):
-    return sqlDB("DELETE FROM people where people.id = ?;", (id))
+    return sqlDB("DELETE FROM people where people.id = ?;", (id,))
 
 def selectCompany():
     return selectDB("SELECT * FROM company;")
