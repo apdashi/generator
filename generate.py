@@ -104,7 +104,7 @@ def saveDoc(self, py):
     document.add_heading("Этап 3. Мониторинг работы", level=2)
     document.add_paragraph(text4)
 
-    document.save("123.docx")
+    return document
 
 
 def make_table(document, data, num):

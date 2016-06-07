@@ -8,7 +8,7 @@ from ui.form import Ui_MainWindow
 from generate import saveDoc
 from PyQt5.QtCore import Qt
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialogButtonBox, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialogButtonBox, QMessageBox, QFileDialog
 
 class startGen(QMainWindow):
     def __init__(self, parent=None):
@@ -18,7 +18,7 @@ class startGen(QMainWindow):
         self.py.buttonBox.button(QDialogButtonBox.Open).clicked.connect(self.opened)
         # self.py.buttonBox.button(QDialogButtonBox.Ok).clicked.connect(lambda: generate(self, self.py))
         self.py.buttonBox.button(QDialogButtonBox.Close).clicked.connect(self.closeApp)
-        self.py.buttonBox.button(QDialogButtonBox.Save).clicked.connect(lambda: saveDoc(self, self.py))
+        self.py.buttonBox.button(QDialogButtonBox.Save).clicked.connect(self.docSave)
 
         self.py.saveConfig.clicked.connect(lambda: self.saveConfig())
         self.py.createDB.clicked.connect(lambda: self.create())
@@ -46,6 +46,12 @@ class startGen(QMainWindow):
         model = index.model()
         model.setData(index, not(model.cached[index.row()][index.column()]))
 
+
+    def docSave(self):
+        saveFileDialog = QFileDialog.getSaveFileName(filter = "*.docx")
+        print(saveFileDialog)
+        doc = saveDoc(self, self.py)
+        doc.save(saveFileDialog[0]+".docx")
 
     def check(self):
         self.dsn = 'dbname=%s user=%s password=%s host=%s' % (self.py.dbname.text(), self.py.user.text(),
