@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 
-def sqlDB(sqlText):
+def sqlDB(sqlText, par=None):
     try:
         conn = sqlite3.connect('example.db')
         cur = conn.cursor()
-        cur.execute(sqlText)
+        if par is None:
+            cur.execute(sqlText)
+        else:
+            cur.execute(sqlText, par)
         conn.commit()
         conn.close()
         return True
@@ -53,23 +56,20 @@ def tableDB():
 
 """ удаление сотрудников"""
 def delDB(id):
-    return sqlDB("DELETE FROM people where people.id = %s;" % (id))
+    return sqlDB("DELETE FROM people where people.id = ?;", (id))
 
 def selectCompany():
     return selectDB("SELECT * FROM company;")
 
 def addPeople(spisok):
-    return sqlDB("INSERT INTO people (fio, company, email ) VALUES ('%s', %s, '%s');" %
-                    (spisok[0], spisok[1], spisok[2]))
+    return sqlDB("INSERT INTO people (fio, company, email ) VALUES (?, ?, ?);", spisok)
 
 def editPeople(spisok):
-    return sqlDB("UPDATE people SET fio = '%s', company = %s, email = '%s' WHERE id = %s" %
-                    (spisok[0], spisok[1], spisok[2], spisok[3]))
+    return sqlDB("UPDATE people SET fio = ?, company = ?, email = ? WHERE id = ?", spisok)
 
 def addCompany(spisok):
-    print("INSERT INTO company (firma) VALUES ('%s');" % (spisok[0]))
-    return sqlDB("INSERT INTO company (firma) VALUES ('%s');" % (spisok[0]))
+    return sqlDB("INSERT INTO company (firma) VALUES (?);", spisok)
 
 
 def editCompany(spisok):
-    return sqlDB("UPDATE company SET firma = '%s' WHERE id = %s" % (spisok[0], spisok[1]))
+    return sqlDB("UPDATE company SET firma = ? WHERE id = ?", spisok)

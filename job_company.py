@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from job_db import addCompany, editCompany, selectCompany
 from ui.company import Ui_MainWindow
 
@@ -27,4 +27,5 @@ class Company(QMainWindow):
         self.parent.py.comboBox.clear()
         for i in selectCompany():
             self.parent.py.comboBox.addItem(i[1], i[0])
+        self.parent.py.comboBox.setCurrentIndex(self.parent.py.comboBox.findText(self.py.nameCompany.text()))
         self.close()
