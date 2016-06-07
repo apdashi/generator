@@ -21,7 +21,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -36,21 +36,15 @@
           <item row="1" column="1">
            <widget class="QLineEdit" name="numBid"/>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_6">
+          <item row="4" column="4">
+           <widget class="QLineEdit" name="app4"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_9">
             <property name="text">
-             <string>Описание заявки</string>
+             <string>Номер ревизии</string>
             </property>
            </widget>
-          </item>
-          <item row="5" column="3">
-           <widget class="QLineEdit" name="ipAddress3"/>
-          </item>
-          <item row="7" column="0" colspan="5">
-           <widget class="QTableView" name="tableView"/>
-          </item>
-          <item row="2" column="1" colspan="4">
-           <widget class="QLineEdit" name="specBid"/>
           </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_8">
@@ -59,8 +53,38 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="QTimeEdit" name="timeOut"/>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Экземляры</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QLineEdit" name="ipAddress3"/>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLineEdit" name="app3"/>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="ipAddress1"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Номер заявки</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QLineEdit" name="portApp"/>
+          </item>
+          <item row="6" column="2">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>svn</string>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_3">
@@ -69,11 +93,11 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="4">
-           <widget class="QLineEdit" name="ipAddress4"/>
+          <item row="3" column="1">
+           <widget class="QTimeEdit" name="timeIn"/>
           </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QLineEdit" name="nameProject"/>
+          <item row="6" column="3" colspan="2">
+           <widget class="QLineEdit" name="svn"/>
           </item>
           <item row="1" column="4">
            <widget class="QCheckBox" name="cache">
@@ -91,15 +115,11 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Номер ревизии</string>
-            </property>
-           </widget>
+          <item row="3" column="2">
+           <widget class="QTimeEdit" name="timeOut"/>
           </item>
-          <item row="3" column="3" colspan="2">
-           <widget class="QDateEdit" name="dateIn"/>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="numberRev"/>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_5">
@@ -108,28 +128,14 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="3" colspan="2">
-           <widget class="QLineEdit" name="svn"/>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="app2"/>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Номер заявки</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>svn</string>
-            </property>
-           </widget>
+          <item row="0" column="1" colspan="4">
+           <widget class="QLineEdit" name="nameProject"/>
           </item>
           <item row="5" column="2">
            <widget class="QLineEdit" name="ipAddress2"/>
-          </item>
-          <item row="6" column="1">
-           <widget class="QLineEdit" name="portApp"/>
           </item>
           <item row="6" column="0">
            <widget class="QLabel" name="label_10">
@@ -138,33 +144,55 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="4">
-           <widget class="QLineEdit" name="app4"/>
+          <item row="8" column="0" colspan="5">
+           <widget class="QTableView" name="tableView"/>
           </item>
-          <item row="4" column="2">
-           <widget class="QLineEdit" name="app2"/>
+          <item row="5" column="4">
+           <widget class="QLineEdit" name="ipAddress4"/>
           </item>
-          <item row="1" column="3">
-           <widget class="QLineEdit" name="numberRev"/>
+          <item row="3" column="3" colspan="2">
+           <widget class="QDateEdit" name="dateIn"/>
           </item>
-          <item row="3" column="1">
-           <widget class="QTimeEdit" name="timeIn"/>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="ipAddress1"/>
-          </item>
-          <item row="4" column="3">
-           <widget class="QLineEdit" name="app3"/>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_7">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>Экземляры</string>
+             <string>Описание заявки</string>
             </property>
            </widget>
           </item>
           <item row="4" column="1">
            <widget class="QLineEdit" name="app1"/>
+          </item>
+          <item row="2" column="1" colspan="4">
+           <widget class="QLineEdit" name="specBid"/>
+          </item>
+          <item row="7" column="0">
+           <widget class="QPushButton" name="addPeople">
+            <property name="text">
+             <string>Добавить сотрудника </string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPushButton" name="editPeople">
+            <property name="text">
+             <string>Изменить сотрудника</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <widget class="QPushButton" name="delPeople">
+            <property name="text">
+             <string>Удалить сотрудника</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3">
+           <widget class="QPushButton" name="upTable">
+            <property name="text">
+             <string>Обновить таблицу</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
