@@ -1,4 +1,6 @@
 import docx
+from docx.enum.style import WD_STYLE_TYPE
+
 bashIPPost = "iptables -t nat -A POSTROUTING -d %s -p tcp -m tcp --dport %s -j SNAT --to-source %s; "
 bashIPPre = "iptables -t nat -A PREROUTING -d %s -p tcp -m tcp --dport %s -j DNAT --to-destination %s; "
 text1 = "Сайт ОАО «Аэрофлот. План публикации обновления %s. \n Номер заявки-релиза в системе HelpDesk: #%s"
@@ -43,6 +45,15 @@ def saveDoc(self, py):
     styles["ListNumber"].font.name = "Calibri"
     styles["Normal"].font.name = "Calibri"
 
+    style = styles.add_style('Code', WD_STYLE_TYPE.PARAGRAPH)
+    style.base_style = styles['Normal']
+    style.font.name = "Courier New"
+    styles = document.styles
+    style = styles["Code"]
+    style._element.get_or_add_pPr()
+    style._element.pPr.get_or_add_shd()
+    style._element.pPr.shd_fill = "FEF2E8"
+
     h = document.add_header()
     h.add_paragraph(text1 % (self.py.nameProject.text(), self.py.numBid.text()))
     document.add_paragraph(u"Цель").bold = True
@@ -71,19 +82,15 @@ def saveDoc(self, py):
             serverPer = 0
         else:
             serverPer = i + 1
+        com1 = bashIPPost % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
+        com2 = bashIPPost % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
         document.add_paragraph(text6 % (self.py.nameProject.text(), listApp[i], listApp[serverPer]), style='ListNumber')
-        document.add_paragraph(bashIPPost % (listSer.get(listApp[i]), self.py.portApp.text(),
-                                                  listSer.get(listApp[serverPer])))
-        document.add_paragraph(bashIPPre % (listSer.get(listApp[serverPer]), self.py.portApp.text(),
-                                                  listSer.get(listApp[i])))
+        document.add_paragraph("%s \n %s" % (com1, com2), style="Code")
         document.add_paragraph(text7 % (listApp[i], self.py.numberRev.text()), style='ListNumber')
-        document.add_paragraph(text0 % (self.py.svn.text()))
+        com1 = bashIPPre % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
+        com2 = bashIPPost % (listSer.get(listApp[serverPer]), self.py.portApp.text(), listSer.get(listApp[i]))
         document.add_paragraph(text8 % (listApp[i]), style='ListNumber')
-        document.add_paragraph(text9)
-        document.add_paragraph(bashIPPre % (listSer.get(listApp[i]), self.py.portApp.text(),
-                                                  listSer.get(listApp[serverPer])))
-        document.add_paragraph(bashIPPost % (listSer.get(listApp[serverPer]), self.py.portApp.text(),
-                                                   listSer.get(listApp[i])))
+        document.add_paragraph("%s \n %s \n %s" % (text9, com1, com2), style="Code")
         if self.py.cache.isChecked() == True:
             document.add_paragraph(text10, style='ListNumber')
             document.add_paragraph(text11)
@@ -96,7 +103,7 @@ def saveDoc(self, py):
             if j[2] == True:
                 document.add_paragraph(j[6], style='ListContinue')
         document.add_paragraph(text14, style='ListNumber')
-        document.add_paragraph(text17)
+        document.add_paragraph(text17, style="Code")
         document.add_paragraph(text18)
         s = ", ".join(c for c in listApp[0:i])
         document.add_paragraph(text15 % s, style='ListNumber')

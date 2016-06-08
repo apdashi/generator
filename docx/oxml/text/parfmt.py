@@ -3,10 +3,9 @@
 """
 Custom element classes related to paragraph properties (CT_PPr).
 """
-
 from ...enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 from ...shared import Length
-from ..simpletypes import ST_SignedTwipsMeasure, ST_TwipsMeasure
+from ..simpletypes import ST_SignedTwipsMeasure, ST_TwipsMeasure, ST_String
 from ..xmlchemy import (
     BaseOxmlElement, OptionalAttribute, RequiredAttribute, ZeroOrOne
 )
@@ -54,6 +53,7 @@ class CT_PPr(BaseOxmlElement):
     ind = ZeroOrOne('w:ind', successors=_tag_seq[23:])
     jc = ZeroOrOne('w:jc', successors=_tag_seq[27:])
     sectPr = ZeroOrOne('w:sectPr', successors=_tag_seq[35:])
+    shd = ZeroOrOne('w:shd', successors=_tag_seq[10:])
     del _tag_seq
 
     @property
@@ -205,6 +205,24 @@ class CT_PPr(BaseOxmlElement):
             return
         self.get_or_add_spacing().after = value
 
+    """"""
+    @property
+    def shd_fill(self):
+        """
+        The value of `w:spacing/@w:after` or |None| if not present.
+        """
+        shd = self.shd
+        if shd is None:
+            return None
+        return shd.fill
+
+    @shd_fill.setter
+    def shd_fill(self, value):
+        if value is None and self.shd is None:
+            return
+        self.get_or_add_shd().fill = value
+    """"""
+
     @property
     def spacing_before(self):
         """
@@ -311,3 +329,11 @@ class CT_Spacing(BaseOxmlElement):
     before = OptionalAttribute('w:before', ST_TwipsMeasure)
     line = OptionalAttribute('w:line', ST_SignedTwipsMeasure)
     lineRule = OptionalAttribute('w:lineRule', WD_LINE_SPACING)
+
+class CT_shd(BaseOxmlElement):
+    """
+    ``<w:spacing>`` element, specifying paragraph spacing attributes such as
+    space before and line spacing.
+    """
+
+    fill = OptionalAttribute('w:fill', ST_String)

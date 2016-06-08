@@ -185,7 +185,7 @@ register_element_cls('w:webHidden',  CT_OnOff)
 from .text.paragraph import CT_P
 register_element_cls('w:p', CT_P)
 
-from .text.parfmt import CT_Ind, CT_Jc, CT_PPr, CT_Spacing
+from .text.parfmt import CT_Ind, CT_Jc, CT_PPr, CT_Spacing, CT_shd
 register_element_cls('w:ind',             CT_Ind)
 register_element_cls('w:jc',              CT_Jc)
 register_element_cls('w:keepLines',       CT_OnOff)
@@ -194,6 +194,7 @@ register_element_cls('w:pageBreakBefore', CT_OnOff)
 register_element_cls('w:pPr',             CT_PPr)
 register_element_cls('w:pStyle',          CT_String)
 register_element_cls('w:spacing',         CT_Spacing)
+register_element_cls('w:shd',         CT_shd)
 register_element_cls('w:widowControl',    CT_OnOff)
 
 from .text.run import CT_Br, CT_R, CT_Text

@@ -224,6 +224,28 @@ class ParagraphFormat(ElementProxy):
     def space_after(self, value):
         self._element.get_or_add_pPr().spacing_after = value
 
+    """"""
+
+    @property
+    def sh_fill(self):
+        """
+        |Length| value specifying the spacing to appear between this
+        paragraph and the subsequent paragraph. |None| indicates this value
+        is inherited from the style hierarchy. |Length| objects provide
+        convenience properties, such as :attr:`~.Length.pt` and
+        :attr:`~.Length.inches`, that allow easy conversion to various length
+        units.
+        """
+        pPr = self._element.pPr
+        if pPr is None:
+            return None
+        return pPr.shd_fill
+
+    @sh_fill.setter
+    def sh_fill(self, value):
+        self._element.get_or_add_pPr().shd_fill = value
+    """"""
+
     @property
     def space_before(self):
         """

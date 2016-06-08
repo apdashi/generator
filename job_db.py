@@ -21,26 +21,18 @@ def selectDB(sqlText):
         conn.close()
         return table
     except:
-        return (())
+        return None
 
 
 """" Проверка подключения к БД"""
 def connDB():
-    try:
-        conn = sqlite3.connect('example.db')
-        cur = conn.cursor()
-        cur.execute("select * FROM people, company")
-        cur.fetchone()
-        conn.close()
-        return True
-    except:
+    if selectDB("select * FROM people, company") is None:
         if createDB():
             return True
-        else:
-            return False
+    return False
 
 """ создание БД"""
-def createDB(self):
+def createDB():
     sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text);")
     sqlDB("CREATE TABLE people(id integer PRIMARY KEY AUTOINCREMENT, fio text, company integer,"
                  " email text, FOREIGN KEY(company) REFERENCES company(id));")
@@ -66,7 +58,6 @@ def editPeople(spisok):
 
 def addCompany(spisok):
     return sqlDB("INSERT INTO company (firma) VALUES (?);", spisok)
-
 
 def editCompany(spisok):
     return sqlDB("UPDATE company SET firma = ? WHERE id = ?", spisok)
