@@ -9,8 +9,8 @@ from docx.enum.dml import MSO_THEME_COLOR
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
-bashIPPost = "iptables -t nat -A POSTROUTING -d %s -p tcp -m tcp --dport %s -j SNAT --to-source %s; "
-bashIPPre = "iptables -t nat -A PREROUTING -d %s -p tcp -m tcp --dport %s -j DNAT --to-destination %s; "
+bashIPPost = "iptables -t nat -A POSTROUTING -d %s -p tcp -m tcp --dport %s -j SNAT --to-source %s;"
+bashIPPre = "iptables -t nat -A PREROUTING -d %s -p tcp -m tcp --dport %s -j DNAT --to-destination %s;"
 text1 = "Сайт ОАО «Аэрофлот. План публикации обновления %s. \nНомер заявки-релиза в системе HelpDesk: #%s"
 text2_0 = "Выполнить обновление функциональности %s выполненные в рамках заявок:"
 text2_1 = "https://support.ramax.ru/issues/%s"

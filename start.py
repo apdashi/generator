@@ -74,10 +74,13 @@ class startGen(QMainWindow):
 
     """ сохранение документа """
     def docSave(self):
-        # saveFileDialog = QFileDialog.getSaveFileName(filter = "*.docx")
+        saveFileDialog = QFileDialog.getSaveFileName(filter = "*.docx")
         doc = saveDoc(self, self.py)
-        # doc.save(saveFileDialog[0]+".docx")
-        doc.save("123.docx")
+        saveStr = saveFileDialog[0]
+        if saveStr[-5:] == ".docx":
+            doc.save(saveStr)
+        else:
+            doc.save(saveStr+".docx")
 
     """" Загрузка настроек пока не реализовано"""
     def opened(self):
