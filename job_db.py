@@ -36,6 +36,7 @@ def createDB():
     sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text);")
     sqlDB("CREATE TABLE people(id integer PRIMARY KEY AUTOINCREMENT, fio text, company integer,"
                  " email text, FOREIGN KEY(company) REFERENCES company(id));")
+    addCompany(("ЗАО «РАМАКС ИНТЕРНЕЙШНЛ»",))
 
 
 """ получение таблицы сотрудников"""
