@@ -9,8 +9,9 @@ from PyQt5.QtCore import Qt
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialogButtonBox, QMessageBox, QFileDialog
 
-"""" формирование окна"""
+
 class startGen(QMainWindow):
+    """" формирование окна """
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
         self.py = Ui_MainWindow()
@@ -46,10 +47,8 @@ class startGen(QMainWindow):
                 self.py.nameProject.addItem(i[1], i[0])
         self.tableFill()
 
-
-
-    """ добавление и изменение сотрудника"""
     def addPeople(self, edit):
+        """ добавление и изменение сотрудника"""
         from job_people import People
         if edit:
             try:
@@ -66,8 +65,8 @@ class startGen(QMainWindow):
             self.people.setWindowModality(Qt.ApplicationModal)
             self.people.show()
 
-    """" удаление сотрудников"""
     def delPeople(self):
+        """" удаление сотрудников"""
         try:
             model = self.py.tableView.model()
             index = self.py.tableView.selectedIndexes()
@@ -81,13 +80,13 @@ class startGen(QMainWindow):
         QMessageBox.question(self, 'Cообщение', otvet, QMessageBox.Yes)
         self.tableFill()
 
-    """" смена checkbox  при двойном клике"""
     def twoClick(self, index):
+        """" смена checkbox  при двойном клике"""
         model = index.model()
         model.setData(index, not(model.cached[index.row()][index.column()]))
 
-    """ сохранение документа """
     def docSave(self):
+        """ сохранение документа """
         saveFileDialog = QFileDialog.getSaveFileName(filter = "*.docx")
         doc = saveDoc(self, self.py)
         saveStr = saveFileDialog[0]
@@ -96,12 +95,8 @@ class startGen(QMainWindow):
         else:
             doc.save(saveStr+".docx")
 
-    """" Загрузка настроек пока не реализовано"""
-    def opened(self):
-        print(4)
-
-    """" Создание таблицы с людьми"""
     def tableFill(self, inTable=None):
+        """" Создание таблицы с людьми"""
         shapka = ['Ответственные', 'Публикация', 'Отчет', 'Код', 'Сотрудник', 'Компания', 'email', 'Код компании']
         table =[]
         for i in tableDB():

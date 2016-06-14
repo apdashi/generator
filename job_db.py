@@ -29,9 +29,8 @@ def selectDB(sqlText, par=None):
     except:
         return None
 
-
-"""" Проверка подключения к БД"""
 def connDB():
+    """" Проверка подключения к БД"""
     if selectDB("select * FROM company") is None:
         if not(sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text,"
                      " priority integer DEFAULT (9));")):
@@ -71,14 +70,14 @@ def lProject(id):
 def dProject(id):
     return sqlDB("DELETE FROM project where id = ?;", (id,))
 
-""" получение таблицы сотрудников"""
 def tableDB():
+    """ получение таблицы сотрудников"""
     return selectDB("SELECT people.id, people.fio, company.firma, people.email, company.id, company.priority "
                     "FROM company, people WHERE company.id = people.company "
                     "ORDER BY company.priority, company.firma, people.fio;")
 
-""" удаление сотрудников"""
 def delDB(id):
+    """ удаление сотрудников"""
     return sqlDB("DELETE FROM people where people.id = ?;", (id,))
 
 def selectCompany():

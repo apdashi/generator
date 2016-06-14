@@ -1,8 +1,8 @@
 from PyQt5 import QtCore
 
 
-""" Модуль отвечающий за таблицу"""
 class MyTableModel(QtCore.QAbstractTableModel):
+    """ Модуль отвечающий за таблицу"""
     def __init__(self, datain, headerdata, parent=None, *args):
         """ datain: a list of lists
             headerdata: a list of strings
