@@ -1,5 +1,7 @@
 # generator
+
 Приложение по генерации документа "План публикации"
+
 1. Установка
 git clone https://github.com/apdashi/generator.git
 cd ./generator
