@@ -71,9 +71,11 @@ def saveDoc(self, py):
     style.font.size = Pt(10)
     styles = document.styles
     style = styles["Code"]
-    style._element.get_or_add_pPr()
-    style._element.pPr.get_or_add_shd()
-    style._element.pPr.shd_fill = "FEF2E8"
+
+    p = style._element.get_or_add_pPr()
+    numPr = OxmlElement('w:shd')  # create number properties element
+    numPr.set(qn('w:fill'), "FEF2E8")  # set list type/indentation
+    p.append(numPr)
 
     style = styles.add_style('hyperlink', WD_STYLE_TYPE.CHARACTER)
     style.base_style = styles['Default Paragraph Font']
@@ -109,10 +111,15 @@ def saveDoc(self, py):
     document.add_paragraph()
     document.add_heading("Этап 2. Публикация изменений", level=2)
     document.add_paragraph()
-    listSer = {self.py.app1.text(): self.py.ipAddress1.text()}
-    listApp = [self.py.app1.text()]
-    listVamish = [self.py.vamish1.text()]
-    test = [self.py.test1.text()]
+    listSer = []
+    listApp = []
+    listVamish = []
+    test = []
+    if self.py.app1.text() != "":
+        listSer = {self.py.app1.text(): self.py.ipAddress1.text()}
+        listApp = [self.py.app1.text()]
+        listVamish = [self.py.vamish1.text()]
+        test = [self.py.test1.text()]
     if self.py.app2.text() != "":
         listSer[self.py.app2.text()] = self.py.ipAddress2.text()
         listApp.append(self.py.app2.text())
