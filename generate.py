@@ -88,10 +88,11 @@ def saveDoc(self, py):
     style.font._element.rPr.color.themeColor = MSO_THEME_COLOR.HYPERLINK
 
     h = document.add_header()
-    hp = h.add_paragraph(text1 % (self.py.nameProject.text(), self.py.numBid.text()))
+    hp = h.add_paragraph(text1 % (self.py.nameProject.itemText(self.py.nameProject.currentIndex()),
+                                  self.py.numBid.text()))
     hp.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
     document.add_paragraph(u"Цель", style='table_z')
-    document.add_paragraph(text2_0 % (self.py.nameProject.text()))
+    document.add_paragraph(text2_0 % (self.py.nameProject.itemText(self.py.nameProject.currentIndex())))
     h = document.add_paragraph('', style='List Bullet 3')
     h.add_run(text2_1 % (self.py.numberBid.text())).style = styles['hyperlink']
     h.add_run(' - %s' % (self.py.specBid.text()))
@@ -135,7 +136,8 @@ def saveDoc(self, py):
             serverPer = i + 1
         com1 = bashIPPost % (listSer.get(listApp[serverPer]), self.py.portApp.text(), listSer.get(listApp[i]))
         com2 = bashIPPre % (listSer.get(listApp[i]), self.py.portApp.text(), listSer.get(listApp[serverPer]))
-        document.add_paragraph(text6 % (self.py.nameProject.text(), listApp[i], listApp[serverPer]), style='List Number')
+        document.add_paragraph(text6 % (self.py.nameProject.itemText(self.py.nameProject.currentIndex()),
+                                        listApp[i], listApp[serverPer]), style='List Number')
         document.add_paragraph("%s \n%s" % (com1, com2), style="Code")
         document.add_paragraph(text7 % (listApp[i], self.py.numberRev.text()), style='List Number')
         h = document.add_paragraph('svn switch ', style="Code")

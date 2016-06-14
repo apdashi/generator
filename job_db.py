@@ -2,21 +2,27 @@
 import sqlite3
 
 def sqlDB(sqlText, par=None):
-    conn = sqlite3.connect('example.db')
-    cur = conn.cursor()
-    if par is None:
-        cur.execute(sqlText)
-    else:
-        cur.execute(sqlText, par)
-    conn.commit()
-    conn.close()
-    return True
-
-def selectDB(sqlText):
     try:
         conn = sqlite3.connect('example.db')
         cur = conn.cursor()
-        cur.execute(sqlText)
+        if par is None:
+            cur.execute(sqlText)
+        else:
+            cur.execute(sqlText, par)
+        conn.commit()
+        conn.close()
+        return True
+    except:
+        return False
+
+def selectDB(sqlText, par=None):
+    try:
+        conn = sqlite3.connect('example.db')
+        cur = conn.cursor()
+        if par is None:
+            cur.execute(sqlText)
+        else:
+            cur.execute(sqlText, par)
         table = cur.fetchall()
         conn.close()
         return table
@@ -26,18 +32,45 @@ def selectDB(sqlText):
 
 """" Проверка подключения к БД"""
 def connDB():
-    if selectDB("select * FROM people, company") is None:
-        if createDB():
-            return True
-    return False
+    if selectDB("select * FROM company") is None:
+        if not(sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text);")):
+            return False
+        if not(addCompany(("ЗАО «РАМАКС ИНТЕРНЕЙШНЛ»",))):
+            return False
+    textQuest = "CREATE TABLE people(id integer PRIMARY KEY AUTOINCREMENT, fio text, company integer," \
+                 " email text, FOREIGN KEY(company) REFERENCES company(id));"
+    if selectDB("select * FROM people") is None:
+        if not (sqlDB(textQuest)):
+            return False
+    textQuest = "CREATE TABLE project(id integer PRIMARY KEY AUTOINCREMENT, namePr text, app1 text, app2 text," \
+                "app3 text, app4 text, IPapp1 text, IPapp2 text, IPapp3 text, IPapp4 text, Capp1 text, Capp2 text," \
+                "Capp3 text, Capp4 text, pApp text, svn text, test1 text, test2 text, test3 text, test4 text, " \
+                "cache integer DEFAULT (0), comCache text, tableSave text);"
+    if selectDB("select * FROM project") is None:
+        if not (sqlDB(textQuest)):
+            return False
+    return True
 
-""" создание БД"""
-def createDB():
-    sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text);")
-    sqlDB("CREATE TABLE people(id integer PRIMARY KEY AUTOINCREMENT, fio text, company integer,"
-                 " email text, FOREIGN KEY(company) REFERENCES company(id));")
-    addCompany(("ЗАО «РАМАКС ИНТЕРНЕЙШНЛ»",))
+def nProject(id):
+    return sqlDB("INSERT INTO project (namePr) VALUES (?);", id)
 
+def selectProject():
+    return selectDB("SELECT id, namePr FROM project")
+
+def sProject(table):
+    return sqlDB("UPDATE project SET app1 = ?, app2 = ?, app3 = ?, app4 = ? , IPapp1 = ?, IPapp2 = ?, "
+                 "IPapp3 = ?, IPapp4 = ?, Capp1 = ?, Capp2 = ?, Capp3 = ?, Capp4 = ?, pApp = ?, svn = ?,"
+                 " test1 = ?, test2 = ?, test3 = ?, test4 = ?, cache = ?, comCache = ?, tableSave = ? "
+                 "where id = ?", table)
+
+def editProject(spisok):
+    return sqlDB("UPDATE project SET namePr = ? WHERE id = ?", spisok)
+
+def lProject(id):
+    return selectDB("SELECT * FROM project where id = ?", (id,))
+
+def dProject(id):
+    return sqlDB("DELETE FROM project where id = ?;", (id,))
 
 """ получение таблицы сотрудников"""
 def tableDB():
