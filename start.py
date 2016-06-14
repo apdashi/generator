@@ -108,22 +108,25 @@ class startGen(QMainWindow):
             if inTable is not None:
                 saveCon = inTable.get(i[0])
                 if saveCon is not None:
-                    table.append([saveCon[0], saveCon[1], saveCon[2], i[0], i[1], i[2], i[3], i[4]])
+                    table.append([saveCon[0], saveCon[1], saveCon[2], i[0], i[1], i[2], i[3], i[4], i[5]])
                 else:
-                    table.append([False, False, False, i[0], i[1], i[2], i[3], i[4]])
+                    table.append([False, False, False, i[0], i[1], i[2], i[3], i[4], i[5]])
             else:
-                table.append([False, False, False, i[0], i[1], i[2], i[3], i[4]])
+                table.append([False, False, False, i[0], i[1], i[2], i[3], i[4], i[5]])
         self.model_tab = tabModel.MyTableModel(table, shapka, self.py.tableView)
         self.py.tableView.setModel(self.model_tab)
 
         self.py.tableView.hideColumn(3)
         self.py.tableView.hideColumn(7)
+        self.py.tableView.hideColumn(8)
         self.py.tableView.setColumnWidth(0, 100)
         self.py.tableView.setColumnWidth(1, 100)
         self.py.tableView.setColumnWidth(2, 100)
         self.py.tableView.setColumnWidth(4, 200)
         self.py.tableView.setColumnWidth(5, 200)
         self.py.tableView.setColumnWidth(6, 200)
+
+
 
     def newProject(self, edit):
         from job_project import Project

@@ -152,7 +152,7 @@ def saveDoc(self, py):
         h.add_run('\nsvn update')
         document.add_paragraph(text8 % (listApp[i]), style='List Number')
         document.add_paragraph("%s \n%s \n%s" % (text9, com2, com1), style="Code")
-        if self.py.cache.isChecked() == True:
+        if self.py.cache.isChecked():
             document.add_paragraph(text10 % (listVamish[i]), style='List Number')
             document.add_paragraph(self.py.comandCache.text(), style="Code")
         document.add_paragraph(text12, style='List Number')
@@ -161,7 +161,7 @@ def saveDoc(self, py):
         document.add_paragraph(text13_2, style='List Bullet')
         document.add_paragraph(text13_3, style='List Bullet')
         for j in (self.py.tableView.model().cached):
-            if j[2] == True:
+            if j[2]:
                 h = document.add_paragraph(style='List Paragraph')
                 create_list(h, i)
                 h.add_run(j[6]).style = styles['hyperlink']
@@ -179,16 +179,10 @@ def saveDoc(self, py):
 def make_table(document, data, num):
     company = []
     for i in data:
-        if i[num] == True:
+        if i[num]:
             company.append([i[5], i[4], i[6]])
 
-    company.sort(key=sort_spisok)
-    iata = []
-    for c in company:
-        if c[0].find("RAMAX") != -1 or c[0].find("РАМАКС") != -1:
-            iata.insert(0, c)
-        else:
-            iata.append(c)
+    company.sort()
 
     old = "такой компании быть не может"
     tbl = document.add_table(1, 3, style= "Table Grid")
@@ -197,7 +191,7 @@ def make_table(document, data, num):
         # tbl.cell(0, i).add_paragraph(h ,style="table_z")
         tbl.cell(0, i).paragraphs[0].text = h
     row_i = 1
-    for i, r in enumerate(iata):
+    for i, r in enumerate(company):
         if old != r[0]:
             tbl.add_row()
             tbl.cell(i+row_i, 0).merge(tbl.cell(i+row_i, 2))
@@ -211,9 +205,6 @@ def make_table(document, data, num):
                 h.add_run(val).style = document.styles['hyperlink']
             if j == 1:
                 tbl.cell(i+row_i, j).text = val
-
-def sort_spisok(inputStr):
-    return inputStr[0]
 
 
 def create_list(paragraph, list_type):

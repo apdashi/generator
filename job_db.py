@@ -33,9 +33,8 @@ def selectDB(sqlText, par=None):
 """" Проверка подключения к БД"""
 def connDB():
     if selectDB("select * FROM company") is None:
-        if not(sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text);")):
-            return False
-        if not(addCompany(("ЗАО «РАМАКС ИНТЕРНЕЙШНЛ»",))):
+        if not(sqlDB("CREATE TABLE company(id integer PRIMARY KEY AUTOINCREMENT, firma text,"
+                     " priority integer DEFAULT (9));")):
             return False
     textQuest = "CREATE TABLE people(id integer PRIMARY KEY AUTOINCREMENT, fio text, company integer," \
                  " email text, FOREIGN KEY(company) REFERENCES company(id));"
@@ -74,8 +73,9 @@ def dProject(id):
 
 """ получение таблицы сотрудников"""
 def tableDB():
-    return selectDB("SELECT people.id, people.fio, company.firma, people.email, company.id FROM company,"
-                    " people WHERE company.id = people.company ORDER BY company.firma, people.fio;")
+    return selectDB("SELECT people.id, people.fio, company.firma, people.email, company.id, company.priority "
+                    "FROM company, people WHERE company.id = people.company "
+                    "ORDER BY company.priority, company.firma, people.fio;")
 
 """ удаление сотрудников"""
 def delDB(id):
@@ -91,7 +91,7 @@ def editPeople(spisok):
     return sqlDB("UPDATE people SET fio = ?, company = ?, email = ? WHERE id = ?", spisok)
 
 def addCompany(spisok):
-    return sqlDB("INSERT INTO company (firma) VALUES (?);", spisok)
+    return sqlDB("INSERT INTO company (firma, priority) VALUES (?, ?);", spisok)
 
 def editCompany(spisok):
-    return sqlDB("UPDATE company SET firma = ? WHERE id = ?", spisok)
+    return sqlDB("UPDATE company SET firma = ?, priority = ? WHERE id = ?", spisok)

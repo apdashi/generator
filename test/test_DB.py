@@ -70,11 +70,11 @@ class MyTests(unittest.TestCase):
 
     def test_addCompany(self):
         with mock.patch('job_db.sqlite3') as mocksql:
-            self.assertTrue(job_db.addCompany('RAMAX'))
+            self.assertTrue(job_db.addCompany('123'))
 
     def test_editCompany(self):
         with mock.patch('job_db.sqlite3') as mocksql:
-            self.assertTrue(job_db.editCompany("RAMAX"))
+            self.assertTrue(job_db.editCompany("123"))
 
 if __name__ == '__main__':
     unittest.main()
