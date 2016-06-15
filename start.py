@@ -18,7 +18,6 @@ class startGen(QMainWindow):
         self.py.setupUi(self)
 
         """ combobox"""
-        self.py.buttonBox.button(QDialogButtonBox.Open).clicked.connect(self.opened)
         self.py.buttonBox.button(QDialogButtonBox.Close).clicked.connect(lambda: self.close())
         self.py.buttonBox.button(QDialogButtonBox.Save).clicked.connect(self.docSave)
 
