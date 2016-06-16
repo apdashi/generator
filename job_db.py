@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 
+
 def sqlDB(sqlText, par=None):
     try:
         conn = sqlite3.connect('example.db')
@@ -15,6 +16,7 @@ def sqlDB(sqlText, par=None):
     except:
         return False
 
+
 def selectDB(sqlText, par=None):
     try:
         conn = sqlite3.connect('example.db')
@@ -28,6 +30,7 @@ def selectDB(sqlText, par=None):
         return table
     except:
         return None
+
 
 def connDB():
     """" Проверка подключения к БД"""
@@ -49,8 +52,10 @@ def connDB():
             return False
     return True
 
+
 def nProject(id):
     return sqlDB("INSERT INTO project (namePr) VALUES (?);", id)
+
 
 def selectProject():
     return selectDB("SELECT id, namePr FROM project")
